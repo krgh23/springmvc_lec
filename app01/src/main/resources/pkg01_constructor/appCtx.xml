@@ -8,7 +8,7 @@
     Person personBean = new Person("유저", contactBean);
   -->
   
-  <!-- constructor-arg 태그 : 생성자를 이용해 값을 전달하는 태그 
+  <!-- constructor-arg 태그(컨스트럭터 아규먼트) : 생성자를 이용해 값을 전달하는 태그 
                               순서를 변경할수 없어서 반드시 순서대로 값을 전달해야한다.(전화번호,이메일 순서)
   -->
   
