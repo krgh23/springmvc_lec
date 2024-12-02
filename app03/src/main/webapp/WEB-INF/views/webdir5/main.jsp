@@ -23,6 +23,8 @@
         
       });
       
+//-----------------------------------------------------------------------------------------------------------------------
+     
       const btn2 = document.getElementById('btn2');
       btn2.addEventListener('click', (event) => {
         
@@ -34,6 +36,9 @@
         
       });
     
+//-----------------------------------------------------------------------------------------------------------------------
+
+      
       const btnDo = document.getElementsByClassName('btn-do');
       for(const btn of btnDo){
         btn.addEventListener('click', (event) =>{
@@ -51,24 +56,77 @@
           location.href = `\${contextPath}/webdir5/req3?param=\${event.currentTarget.nextElementSibling.value}`;
         });
       }  
+      
+//-----------------------------------------------------------------------------------------------------------------------
+      
+    
+    
+    const btns = document.getElementsByClassName('btns');
+    for(const btn of btns) {
+      btn.addEventListener('click', (event) => {
+        
+        // 부모 노드(Node)    : parentNode
+        // 부모 요소(Element) : parentElement
+        
+        const contextPath = '<%=request.getContextPath()%>';
+        location.href = `\${contextPath}/webdir5/req4?param=\${event.currentTarget.parentElement.dataset.no}`;
+        
+      })
+    }
+      
+//-----------------------------------------------------------------------------------------------------------------------
+      
+      
+    } // end onload
+    
+    function fnMove(anchor) { // anchor 는 클릭한 <a> 태그 요소를 의미합니다.
+      alert('이동합니다.');
+      location.href= anchor.dataset.url
     }
     
   </script>
+  
+  
+  
 </head>
 <body>
+
+
+
 
   <%-- 요청 만들기 3 : JavaScript 의 Location 객체 활용하기 (<a> 태그와 동일한 요청입니다.) --%>
 
   <button type="button" id="btn1">요청1</button>
   <br/> 
+
+<%-- ------------------------------------------------------------------------------------------------------------------ --%>
   
   <button type="button" id="btn2" data-id="1">요청2</button>
   <br/>
 
-  <button type="button" class="btn-do">요청do1</button>
-  <input type="hidden" value="1"><br/>
-  <button type="button" class="btn-do">요청do2</button>
-  <input type="hidden" value="2"><br/>
+<%-- ------------------------------------------------------------------------------------------------------------------ --%>
 
+
+  <button type="button" class="btn-do">요청do1</button>
+  <input type="hidden" value="1ok"><br/>
+  <button type="button" class="btn-do">요청do2</button>
+  <input type="hidden" value="2ok"><br/>
+  
+<%-- ------------------------------------------------------------------------------------------------------------------ --%>
+  
+  <div data-no="1">
+    <button type="button" class="btns">요청하기1</button>
+  </div>
+  <div data-no="2">
+    <button type="button" class="btns">요청하기2</button>
+  </div>
+  <br/>
+  
+  <%-- <a> 태그를 클릭하면 JavaScript 의 fnMove() 함수가 호출됩니다. --%>
+  <%-- this : 클릭한 요소를 의미한다. 어떤 <a> 태그를 클릭했는지 함수에 인자로 전달합니다.--%>
+  <%-- data- : 하이픈뒤로 넣고싶은값 넣기 --%>
+  <a onclick="fnMove(this)" data-url="https://www.naver.com">네이버</a><br/>
+  <a onclick="fnMove(this)" data-url="https://www.kakao.com">카카오</a><br/>
+ 
 </body>
 </html>
