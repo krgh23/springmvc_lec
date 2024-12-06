@@ -24,7 +24,7 @@ public class MvcController2 {
   @RequestMapping(value="/redirect/insert/do", method = RequestMethod.POST)  //RequestMethod 인설트가 나중에 가능
   public String insert(
       Person person  // 사용자가 입력한 정보가 커맨드 객체 Person person 에 저장됩니다.
-    , Model model                            // Model 에 저장된 속성(Attribute)은 forward 할 때만 전달됩니다. redirect 할때는 전달되지 않습니다.
+    , Model model                            // Model에 저장된 속성(Attribute)은 forward 할 때만 전달됩니다. redirect 할 때는 전달되지 않습니다.
     , RedirectAttributes redirectAttributes  // RedirectAttributes 에 저장된 플래시 속성(Flash Attribute)은 redirect 할 때 전달됩니다.
   ) {
     
