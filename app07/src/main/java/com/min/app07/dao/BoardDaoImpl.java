@@ -1,6 +1,7 @@
 package com.min.app07.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -39,13 +40,13 @@ public class BoardDaoImpl implements IBoardDao {
    */
   
   
-  // boardMapper.xml 쿼리문에 ID는 메소드 이름으로 통일시킴
+  // boardMapper.xml 쿼리문에 ID는 메소드 이름으로 통일필수
   // boardMapper.xml에 namespace를 mybatis.mappers.boardMapper 로 기제해놓음
   // template.selectOne("네임스페이스.쿼리문아이디", 파라미터)
   
   @Override
-  public List<BoardDto> selectBoardList() {
-    List<BoardDto> boardList = template.selectList("mybatis.mappers.boardMapper.selectBoardList");  // 쿼리문 아이디 : selectList("SelectBoardList") ->  SelectBoardList
+  public List<BoardDto> selectBoardList(String sort) {
+    List<BoardDto> boardList = template.selectList("mybatis.mappers.boardMapper.selectBoardList", sort);  // 쿼리문 아이디 : selectList("SelectBoardList") ->  SelectBoardList
     return boardList;
   }
 
@@ -63,6 +64,24 @@ public class BoardDaoImpl implements IBoardDao {
   }
 
   @Override
+  public List<BoardDto> selectBoardSearchList(Map<String, Object> map) {
+    List<BoardDto> searchList = template.selectList("mybatis.mappers.boardMapper.selectBoardSearchList", map);
+    return searchList;
+  }
+  
+  @Override
+  public List<BoardDto> selectBoardPeriodList(Map<String, Object> map) {
+    List<BoardDto> peridoList = template.selectList("mybatis.mappers.boardMapper.selectBoardPeriodList", map);
+    return peridoList;
+  }
+  
+  @Override
+  public List<BoardDto> selectBoardIntegratedSearch(Map<String, Object> map) {
+    List<BoardDto> list = template.selectList("mybatis.mappers.boardMapper.selectBoardIntegratedSearch", map);
+    return list;
+  }
+  
+  @Override
   public int insertBoard(BoardDto boardDto) {
     int result = template.insert("mybatis.mappers.boardMapper.insertBoard", boardDto);
     return result;
@@ -77,6 +96,12 @@ public class BoardDaoImpl implements IBoardDao {
   @Override
   public int deletBoard(int boardId) {
     int result = template.delete("mybatis.mappers.boardMapper.deletBoard", boardId);
+    return result;
+  }
+  
+  @Override
+  public int deleteSelectedBoard(int[] numbers) {
+    int result = template.delete("mybatis.mappers.boardMapper.deleteSelectedBoard", numbers);
     return result;
   }
 

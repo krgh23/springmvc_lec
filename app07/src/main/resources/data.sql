@@ -33,3 +33,25 @@ INSERT INTO tbl_board VALUES(NULL, '20241210_식단', '대방어, 광어, 우럭
 INSERT INTO tbl_board VALUES(NULL, '20241211_식단', '파스타, 리조또, 피자', '2024-12-07 10:00:00', 2);
 
 COMMIT;
+
+SELECT board_id, title, contents, b.usr_id, usr_email, usr_name, create_dt
+  FROM tbl_board b INNER JOIN tbl_user u 
+    ON b.usr_id = u.usr_id
+ ORDER BY board_id DESC;
+
+    SELECT
+           board_id
+         , title
+         , contents
+         , create_dt
+         , b.usr_id
+         , usr_email
+         , usr_name
+      FROM 
+           tbl_board b INNER JOIN tbl_user u 
+        ON 
+           b.usr_id = u.usr_id
+     WHERE
+           DATE(create_dt) BETWEEN '2024-12-05' AND '2024-12-06';
+
+
