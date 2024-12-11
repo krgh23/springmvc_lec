@@ -25,8 +25,8 @@
   <!-- 3. org.mybatis.spring.SqlSessionFactoryBean -->
   <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="dataSource" ref="hikariDataSource"/>
-    <property name="configLocation" value="myBatis/configuration/mybatis-config.xml"/>
-    <property name="mapperLocations" value="myBatis/mappers/*.xml"/>  <!-- 모든 맵퍼는 mappers 폴더에 저장하여 *.xml -->
+    <property name="configLocation" value="classpath:mybatis/configuration/mybatis-config.xml"/>  <!-- classpath: -->
+    <property name="mapperLocations" value="classpath:mybatis/mappers/*.xml"/>  <!-- 모든 맵퍼는 mappers 폴더에 저장하여 *.xml -->
   </bean>
   
   <!-- 4. org.mybatis.spring.SqlSessionTemplate -->
