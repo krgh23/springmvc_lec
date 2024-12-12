@@ -54,4 +54,4 @@ SELECT board_id, title, contents, b.usr_id, usr_email, usr_name, create_dt
      WHERE
            DATE(create_dt) BETWEEN '2024-12-05' AND '2024-12-06';
 
-
+SELECT LAST_INSERT_ID()

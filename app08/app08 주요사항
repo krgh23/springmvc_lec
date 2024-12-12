@@ -1,0 +1,16 @@
+
+// 파일업로드를 위하여
+https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload
+1.5 버전
+
+<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+<dependency>
+    <groupId>commons-fileupload</groupId>
+    <artifactId>commons-fileupload</artifactId>
+    <version>1.5</version>
+</dependency>
+
+ 
+*************************************************
+fileMapper 에 사용된 ID가 FileDaoImpl에 사용된다.
+*************************************************
