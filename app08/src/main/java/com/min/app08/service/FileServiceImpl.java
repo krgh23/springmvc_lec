@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.min.app08.dao.IFileDao;
 import com.min.app08.dto.FileDto;
-import com.min.app08.util.FileUtil;
+import com.min.app08.utill.FileUtil;
 
 import lombok.RequiredArgsConstructor;
 
