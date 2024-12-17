@@ -13,9 +13,13 @@ import com.min.myapp.dto.BlogDto;
 
 @Service
 public class BlogServiceImpl implements IBlogService {
+  
+  private IBlogDao blogDao;
 
   @Autowired
-  private IBlogDao blogDao;
+  private void prepare(IBlogDao blogDao) {
+    this.blogDao = blogDao;
+  }
   
   @Override
   public Map<String, Object> getBlogList() {
@@ -31,17 +35,11 @@ public class BlogServiceImpl implements IBlogService {
 
   @Override
   public BlogDto getBlogId(int blog_id) {
-    BlogDto blogDto = blogDao.selectBlogById(blog_id);
-    return blogDto;
+    return blogDao.selectBlogById(blog_id);
   }
 
   @Override
   public String registerBlog(HttpServletRequest request) {
-    BlogDto blogDto = BlogDto.builder()
-                          .title(request.getParameter("title"))
-                          .contents(request.getParameter("contents"))
-                          .user_email(request.getParameter("user_email"))
-                          .modify_dt(request.get("modify_dt"))
     return null;
   }
 

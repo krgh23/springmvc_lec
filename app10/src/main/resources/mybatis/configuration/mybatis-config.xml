@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+
+  <!-- 마이바티스 환경 설정 세부 항목  -->
+  <settings>
+    <setting name="mapUnderscoreToCamelCase" value="true"/> <!-- mapUnderscoreToCamelCase : 언더바를 카멜케이스로 바꾸게 해줌 -->
+  </settings>
+  
+  <!-- 매퍼에서 사용할 클래스의 별명 지정하기 alias 는 별명 자유롭게 지정 -->
+  <typeAliases>
+    <typeAlias type="com.min.app10.dto.UserDto" alias="UserDTO"/>  <!-- 존재하는것만 기제 파일 폴더 없으면 톰켓이 가동을 안함 -->
+  </typeAliases>
+
+</configuration>

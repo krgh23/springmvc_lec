@@ -22,10 +22,36 @@ CREATE TABLE IF NOT EXISTS tbl_attach
     file_path         VARCHAR(300),
     original_filename VARCHAR(300),
     filesystem_name   VARCHAR(40),
+    download_count    int,
     CONSTRAINT pk_file PRIMARY KEY (attach_id),
     CONSTRAINT fk_notice_attach FOREIGN KEY (notice_id)
-        REFERENCES tbl_notice (notice_id) ON DELETE CASCADE 
+        REFERENCES tbl_notice (notice_id) ON DELETE CASCADE /* 데이터베이스상에서만 사라지고 파일은 남아있음 */
 ) ENGINE=InnoDB COMMENT ='첨부파일';
+
+
+    SELECT n.notice_id, 
+           n.notice_title, 
+           n.notice_contents, 
+           n.created_at, 
+           COUNT(a.notice_id) AS attach_count
+      FROM tbl_notice n INNER JOIN tbl_attach a ON n.notice_id = a.notice_id
+     GROUP BY n.notice_id, n.notice_title, n.notice_contents, n.created_at
+     ORDER BY n.notice_id DESC;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -23,5 +23,5 @@ public class BlogDto {
   private String user_email;
   private int hit;
   private java.sql.Timestamp modify_dt;
-  private Timestamp criate_dt;
+  private Timestamp create_dt;
 }

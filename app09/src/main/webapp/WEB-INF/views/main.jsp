@@ -20,7 +20,9 @@
 <body>
 
   <h1 id="logo" class="logo">Coupang</h1>
-
+  
+  <a href="${contextPath}/notice/list.do">공지사항</a>
+  
 
 </body>
 </html>
