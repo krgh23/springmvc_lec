@@ -1,0 +1,83 @@
+
+학습주제 AOP
+1. Aspect oriented Programming
+2. 관점 지향 프로그래밍
+3. 특정 시점(관점)에 반복적으로 동작 시킬 작업을 등록할 때 사용한다.
+4. 비지니스 메소드마다 반복해서 처리해야 하는 부분(로깅 처리, 트랜잭션 처리 등)
+   여러번 작성하지 않고, 하나의 코드만으로 반복해서 적용하는 프로그래밍 방식을 의미합니다.
+5. 개념 이해
+  
+         진행하는 방향  → (횡단)
+                        @Controller      @Service    @Repository(Dao)    DB
+/write.do  작성페이지                                                                  
+/regist.do 등록                                                                       
+/modify.do 수정                                                                     
+/remove.do 삭제                                                                       
+/list.do   목록                                                                   
+/detail.do 상세                                                                       
+                          ↑                ↑             
+                        (종단)           (종단)
+                        로그 남기기      트랜잭션
+6. AOP 핵심 용어
+  1) JoinPoint : 조인 포인트, AOP를 적용할 메소드 전체를 의미합니다.(AOP가 적용될 후보)
+  2) PointCut  : 포인트컷, JoinPoint 중에서 AOP를 적용한 메소드를 의미합니다.
+  3) Advice    : 어드파이스, AOP 작업 자체를 의미합니다. (로그, 트랜잭션 등)
+  
+7. Advice 동작시점
+  1) @Before : PointCut 동작 이전
+  2) @After  : PointCut 동작 이후 (동작 후 예외 발생 여부와 상관 없이 동작)
+  3) @Around : PointCut 동작 이전과 이후 모두 동작
+  4) @AfterReturning : PointCut 정상 동작 이후(동작이 성공할때만 작동)
+  5) @AfterThrowing  : PointCut 예외 발생 이후(동작이 실패할때만 작동)
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------
+https://mvnrepository.com/artifact/org.aspectj/aspectjweaver
+1.9.22.1 제일 최근꺼
+https://mvnrepository.com/artifact/org.aspectj/aspectjweaver/1.9.22.1
+
+<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+<dependency>
+    <groupId>org.aspectj</groupId>
+    <artifactId>aspectjweaver</artifactId>
+    <version>1.9.22.1</version>
+    <scope>runtime</scope>
+</dependency>
+
+
+
+https://mvnrepository.com/artifact/org.aspectj/aspectjrt
+1.9.22.1 aspectjweaver이것과 같은버전
+https://mvnrepository.com/artifact/org.aspectj/aspectjrt/1.9.22.1
+
+<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
+<dependency>
+    <groupId>org.aspectj</groupId>
+    <artifactId>aspectjrt</artifactId>
+    <version>1.9.22.1</version>
+ <!--   <scope>runtime</scope>  --> <!-- 실행할때라 자동완성이 안되서 삭제처리함 -->
+</dependency>
+
+
+프로퍼티에서 
+    <org.aspectj-version>1.9.22.1</org.aspectj-version>
+버전 관리를 위해 변수로 저장하고
+        <version>${org.aspectj-version}</version>
+이런식으로 한번에 관리
+-----------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
