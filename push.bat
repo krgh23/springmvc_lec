@@ -5,7 +5,7 @@ for /f "tokens=2 delims==" %%I in ('wmic os get localdatetime /value ^| find "="
 set date=%datetime:~0,8%
 
 :: Git 명령어 실행
-git add *
+git add .
 git commit -m "%date%"
 git push origin main
 
