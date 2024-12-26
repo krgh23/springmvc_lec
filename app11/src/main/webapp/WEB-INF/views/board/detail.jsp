@@ -36,40 +36,39 @@
         <button type="button" onclick="fnCancel()">수정취소</button>
         <button type="button" onclick="fnRemove()">삭제하기</button>
       </div>
-      
-      
     </form>
   </div>
-      <script>
-        
-        const formDetail = document.getElementById('form-detail');
-      
-        // 함수 표현식 : 호이스팅이 안됩니다.(호출이 코드 위에있으면 인식불가)
-        // const fnModify = () => { }
-        
-        // 함수 선헌식 : 호이스팅이 됩니다. 코드가 어디에 있든지 항상 먼저 처립니다.
-        function fnModify() {
-          formDetail.action = '${contextPath}/board/modify.do'
-          formDetail.submit();
-        }
-        
-        function fnCancel() {
-          location.href='${contextPath}/board/list.do' 
-        }
 
-        function fnRemove() {
-          if(confirm ('현재 게시글을 삭제할까요?')){
-            formDetail.action = '${contextPath}/board/remove.do' 
-            formDetail.submit();         
-          }
-        }
-        
-        const msg = '${msg}';
-        if(msg !== ''){
-          alert(msg)
-        }
-        
-      </script>
+  <script>
+
+    const formDetail = document.getElementById('form-detail');
+  
+    // 함수 표현식 : 호이스팅이 안 됩니다.
+    // const fnModify = () => { }
+  
+    // 함수 선언식 : 호이스팅이 됩니다. 코드가 어디에 있든지 항상 먼저 처리됩니다.
+    function fnModify() {
+      formDetail.action = '${contextPath}/board/modify.do';
+      formDetail.submit();
+    }
+  
+    function fnCancel() {
+      location.href = '${contextPath}/board/list.do';
+    }
+    
+    function fnRemove() {
+      if(confirm('현재 게시글을 삭제할까요?')) {
+        formDetail.action = '${contextPath}/board/remove.do';
+        formDetail.submit();
+      }
+    }
+    
+    const msg = '${msg}';
+    if(msg !== '') {
+      alert(msg);
+    }
+    
+  </script>
 
 </body>
 </html>

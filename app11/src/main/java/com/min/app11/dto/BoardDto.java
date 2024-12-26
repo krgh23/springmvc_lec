@@ -20,6 +20,5 @@ public class BoardDto {
   private String title;
   private String contents;
   private Timestamp createDt;
-  // private int usrId;
-  private UserDto userDto;  // UserDto에 usrId가 있음
+  private UserDto userDto;
 }
