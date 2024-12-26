@@ -7,7 +7,7 @@ public class MainClass {
 
   public static void main(String[] args) {
     // AnnotationConfigApplicationContext 클래스
-    // Java Annotation(@Configuration, @Bean 을 이용해 생성된 bean 관리
+    // Java Annotation(@Configuration, @Bean) 을 이용해 생성된 bean 관리
                                          
     AbstractApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);  
                                   // new AnnotationConfigApplicationContext("com.min.app01.pkg02_bean") 읽어들일게 많은경우
@@ -21,6 +21,7 @@ public class MainClass {
     System.out.println(person.getContact().getMobile());
     System.out.println(person.getContact().getEmail());
   
+    ctx.close();
   }
 
 }

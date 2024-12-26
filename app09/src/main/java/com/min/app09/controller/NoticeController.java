@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.min.app09.dto.AttachDto;
 import com.min.app09.service.INoticeService;
 
 import lombok.RequiredArgsConstructor;

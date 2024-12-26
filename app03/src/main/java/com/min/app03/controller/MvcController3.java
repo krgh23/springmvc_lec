@@ -37,22 +37,26 @@ public class MvcController3 {
    * 모든 요청에 관한 정보는 HttpServletRequest 인터페이스가 담당합니다.
    * Query String 은 Parameter 형태로 HttpServletRequest 인터페이스 객체에 저장되어 있습니다.
    * getParameter() 또는 getParameterValues() 메소드를 이용해 Parameter 를 확인할 수 있습니다.
-   * getParameter() 메소느는 String 을 반환하고, getParameterValues() 메소드는 String[] 을 반환합니다.
+   * getParameter() 메소드는 String 을 반환하고, getParameterValues() 메소드는 String[] 을 반환합니다.
    */
   
   
   // Query String : sort=ASC&page=1
   @RequestMapping(value="/webdir3/req2")
   public String req2(HttpServletRequest request) {
+    // Parameter 가 전달되면 getParameter() 메소드로 받습니다.
     String sort = request.getParameter("sort");
+    // Parameter 는 언제나 String 타입으로 받습니다. 다른 타입으로 바꿔야 할 경우에는 추가 작업을 해야 합니다.
     int page = Integer.parseInt(request.getParameter("page"));
-    System.out.println(sort + "," + page);
+    System.out.println(sort + ", " + page);
     return "webdir3/req2";
   }
   
-  // Query String : sort=flowers=ROSE&flowers=TULIP
+  // Query String : flowers=ROSE&flowers=TULIP
   @RequestMapping(value="/webdir3/req3")
   public String req3(HttpServletRequest request) {
+
+    // 동일한 이름의 Parameter 가 전달되면 getParameterValues() 메소드로 받습니다.
     String[] flowers = request.getParameterValues("flowers");
     System.out.println(Arrays.toString(flowers));
     return "webdir3/req3";
@@ -65,17 +69,17 @@ public class MvcController3 {
     // 전달되지 않은 Parameter 를 꺼내면 null 이 반환됩니다.
     String sort = request.getParameter("sort");
     
-    // 전달되지 않은 Parameter 에 디폴트를 적용할 수 있습니다.
-    // Parameter page 가 전달되지 않는다면 "1"을 디폴트 값을 사용하도록 설절해 보겠습니다.
+    // 전달되지 않은 Parameter 에 디폴트 값을 적용할 수 있습니다.
+    // Parameter page 가 전달되지 않는다면 "1"을 디폴트 값으로 사용하도록 설정해 보겠습니다.
     
-    // Parameter page 를 Optional 에 담습니다. Parameter page 는 ofNullagle() 메소드로 담았기 때문에 없어도 오류가 발생하지 않습니다.
+    // Parameter page 를 Optional 에 담습니다. Parameter page 는 ofNullable() 메소드로 담았기 때문에 없어도 오류가 발생하지 않습니다.
                                                               // of() 메소드로 담으면 오류가 납니다.
     Optional<String> opt = Optional.ofNullable(request.getParameter("page"));
     
-    // Optional 에 담은 Parameter page 를 꺼냅니다. 이 때 Parameter page 가 없으면 "1"을 꺼냅니다.
+    // Optional 에 담은 Parameter page 를 꺼냅니다. 이 때 Parameter page 가 없으면 "1" 을 꺼냅니다.
     int page = Integer.parseInt(opt.orElse("1"));  // int page = Integer.parseInt(request.getParameter("page"))은 NULL 반환 하여 500번대 오류
     
-    System.out.println(sort + "," + page);
+    System.out.println(sort + ", " + page);
     return "webdir3/req4";
   }
   
@@ -91,15 +95,14 @@ public class MvcController3 {
   // Query String : sort=ASC
   @RequestMapping(value="/webdir3/req5")
   public String req5(                           // public String req5(String sort, int page) {  // 선언된 변수로 추론하여 값을 받습니다.
-      @RequestParam(value="sort") String sort   // Parameter sort 가 전달되지 않으면 "잘못된 요청(400)" 에외가 발생합니다.
-    , @RequestParam(value="page", required=false, defaultValue="1") int page // Parameter page 가 전달되지 않으면 기본값으로 "1"을 사용합니다.
-/*
+      @RequestParam(value="sort") String sort  // Parameter sort 가 전달되지 않으면 "잘못된 요청(400)" 예외가 발생합니다.
+    , @RequestParam(value="page", required=false, defaultValue="1") int page // Parameter page 가 전달되지 않으면 기본 값으로 "1"을 사용합니다.
     , @RequestParam(value="page", required=false) int page // required=false -> page가 전달되지 않아도 된다
                                                            // int / double / char... 은 null을 받을 수없어서 required=false있어도 오류(500)발생
                                                            // Stirng / Integer / Optional ... 은 null을 받을수 있어서 정상처리 된다.
 */
   ) {
-    System.out.println(sort + "," + page);
+    System.out.println(sort + ", " + page);
     return "webdir3/req5";
   }
   
@@ -114,7 +117,7 @@ public class MvcController3 {
   // Query String : sort=ASC&page=1
   @RequestMapping(value="/webdir3/req6")
   public String req6(PageVo pageVo) {
-    System.out.println(pageVo.getSort() + "," + pageVo.getPage());
+    System.out.println(pageVo.getSort() + ", " + pageVo.getPage());
     return "webdir3/req6";
   }
   
