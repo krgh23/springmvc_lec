@@ -14,6 +14,8 @@
   }
 </style>
 
+  <h1>Blog Detail</h1>
+
   <form id="form-detail" method="post">
   
     <input type="hidden" name="blog_id" value="${blog.blog_id}">
@@ -42,31 +44,42 @@
   
   <script>
   
-    const formDetail = document.getElementById('form-detail');
-    const title = document.getElementById('title');
-  
-    document.getElementById('btn-modify').addEventListener('click', (event) => {
-      if(title.value === '') {
-        alert('제목은 필수입니다.');
-        title.focus();
-        return;
-      }
-      formDetail.action = '${contextPath}/blog/modify.do';
-      formDetail.submit();
-    })
-    
-    document.getElementById('btn-remove').addEventListener('click', (event) => {
-      if(confirm('현재 블로그를 삭제할까요?')) {        
-        formDetail.action = '${contextPath}/blog/remove.do';
+    function submitForm() {
+      const formDetail = document.getElementById('form-detail');
+      const title = document.getElementById('title');
+      document.getElementById('btn-modify').addEventListener('click', (event) => {
+        if(title.value === '') {
+          alert('제목은 필수입니다.');
+          title.focus();
+          return;
+        }
+        formDetail.action = '${contextPath}/blog/modify.do';
         formDetail.submit();
-      }
-    })
-    
-    document.getElementById('btn-list').addEventListener('click', (event) => {
-      location.href = '${contextPath}/blog/list.do';
-    })
+      })
+    }
   
+    function deleteBlog() {      
+      document.getElementById('btn-remove').addEventListener('click', (event) => {
+        if(confirm('현재 블로그를 삭제할까요?')) {        
+          formDetail.action = '${contextPath}/blog/remove.do';
+          formDetail.submit();
+        }
+      })
+    }
+    
+    function toBlogList() {
+      document.getElementById('btn-list').addEventListener('click', (event) => {
+        location.href = '${contextPath}/blog/list.do';
+      })
+    }
+    
+    submitForm();
+    deleteBlog();
+    toBlogList();
+    
   </script>
+
+</div>
 
 </body>
 </html>

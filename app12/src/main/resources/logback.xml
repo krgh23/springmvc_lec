@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-  <!-- 수업내용 -->
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
     <encoder>
       <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS, Asia/Seoul} %highlight(%-5level) %logger{36} -- %msg%n</pattern>
     </encoder>
   </appender>
   
-  <!-- 루트 드렉터리 아래 log 디텍터리 -->
+  <!-- 루트 디렉터리 아래 log 디렉터리 -->
   <variable name="LOG_HOME" value="/log" />
   
   <appender name="FILE" class="ch.qos.logback.core.FileAppender">
@@ -16,10 +15,10 @@
     <append>true</append>
     <immediateFlush>true</immediateFlush>
     <encoder>
-      <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS, Asia/Seoul} [%thread]%-5level %logger{36} -- %msg%n</pattern>
+      <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS, Asia/Seoul} [%thread] %-5level %logger{36} -- %msg%n</pattern>
     </encoder>
   </appender>
-  
+
   <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
     <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
       <fileNamePattern>${LOG_HOME}/mylog-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
@@ -28,15 +27,15 @@
       <totalSizeCap>20GB</totalSizeCap>
     </rollingPolicy>
     <encoder>
-      <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS, Asia/Seoul} [%thread]%-5level %logger{36} -- %msg%n</pattern>
+      <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS, Asia/Seoul} [%thread] %-5level %logger{36} -- %msg%n</pattern>
     </encoder>
   </appender>
 
   <!-- root logger -->
-  <root level="DEBUG">  <!-- DEBUG를 INFO 로 변경하면 내용이 많이 줄어든다. -->
+  <root level="DEBUG">
     <appender-ref ref="STDOUT" />
     <appender-ref ref="FILE" />
     <appender-ref ref="ROLLING" />
   </root>
-  
+
 </configuration>

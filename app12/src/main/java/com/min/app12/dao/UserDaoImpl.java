@@ -24,13 +24,13 @@ public class UserDaoImpl implements IUserDao {
   
   @Override
   public int insertUser(UserDto userDto) {
-    log.debug(userDto.toString());  // 인자 값은 $msg로 표시됩니다.
+    log.debug(userDto.toString());  // 인자 값은 %msg로 표시됩니다.
     return template.insert("mybatis.mappers.userMapper.insertUser", userDto);
   }
   
   @Override
   public UserDto selectUserByMap(Map<String, Object> map) {
-    log.debug(map.toString());  // 인자 값은 $msg로 표시됩니다.
+    log.debug(map.toString());  // 인자 값은 %msg로 표시됩니다.
     return template.selectOne("mybatis.mappers.userMapper.selectUserByMap", map);
   }
 

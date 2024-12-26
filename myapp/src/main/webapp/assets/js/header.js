@@ -1,6 +1,13 @@
 /**
- * 파일명 : main.js
+ * 파일명 : header.js
  * 작성자 : 홍길동
+ * 함수
+ *   getContextPath() : ContextPath 반환
+ *   toMainPage() : 로고를 클릭하면 메인 페이지로 이동
+ *   toLoginForm() : 로그인 화면으로 이동
+ *   toSignupForm() : 회원가입 화면으로 이동
+ *   doLogout() : 로그아웃
+ *   displayMsg() : 각종 작업의 성공/실패 메시지 출력
  */
 
 function getContextPath() {
@@ -12,13 +19,27 @@ function getContextPath() {
   return contextPath;
 }
 
-function toMain() {
+function toMainPage() {
   const logo = document.getElementById('logo');
   logo.addEventListener('click', (event) => {
     location.href = getContextPath() + '/main.do';
   })
 }
 
+function toLoginForm() {
+  if(!location.href.includes('login.form')) {
+    location.href = getContextPath() + '/user/login.form?url=' + location.href;
+  }
+}
+
+function toSignupForm() {
+  location.href = getContextPath() + '/user/signup.form';
+}
+
+function doLogout() {
+  location.href = getContextPath() + '/user/logout.do';
+}
+
 onload = () => {
-  toMain();
+  toMainPage();
 }

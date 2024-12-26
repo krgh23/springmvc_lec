@@ -1,10 +1,12 @@
-package com.min.myapp.dao;
+package com.min.myapp.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.min.myapp.dao.INoticeDao;
 import com.min.myapp.dto.AttachDto;
 import com.min.myapp.dto.NoticeDto;
 
@@ -17,8 +19,13 @@ public class NoticeDaoImpl implements INoticeDao {
   private final SqlSessionTemplate template;
   
   @Override
-  public List<NoticeDto> selectNoticeList() {
-    return template.selectList("mybatis.mappers.noticeMapper.selectNoticeList");
+  public List<NoticeDto> selectNoticeList(Map<String, Object> map) {
+    return template.selectList("mybatis.mappers.noticeMapper.selectNoticeList", map);
+  }
+  
+  @Override
+  public int selectNoticeCount() {
+    return template.selectOne("mybatis.mappers.noticeMapper.selectNoticeCount");
   }
 
   @Override
@@ -54,6 +61,16 @@ public class NoticeDaoImpl implements INoticeDao {
   @Override
   public int updateAttachDownloadCount(int attachId) {
     return template.update("mybatis.mappers.noticeMapper.updateAttachDownloadCount", attachId);
+  }
+  
+  @Override
+  public List<NoticeDto> selectSearchList(Map<String, Object> map) {
+    return template.selectList("mybatis.mappers.noticeMapper.selectSearchList", map);
+  }
+  
+  @Override
+  public int selectSearchCount(Map<String, Object> map) {
+    return template.selectOne("mybatis.mappers.noticeMapper.selectSearchCount", map);
   }
   
 }

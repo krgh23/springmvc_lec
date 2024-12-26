@@ -10,6 +10,6 @@
   <img src="${contextPath}/assets/images/animal2.jpg">
 
 </div>
-  
+
 </body>
 </html>

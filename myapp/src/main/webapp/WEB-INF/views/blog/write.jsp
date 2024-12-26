@@ -14,13 +14,13 @@
   }
 </style>
 
-  <h1>블로그 작성하기</h1>
+  <h1>Blog Write</h1>
 
   <form id="form-write" action="${contextPath}/blog/register.do" method="post">
   
     <div>
       <label for="user_email">작성자 이메일</label>
-      <input type="text" name="user_email" id="user_email">
+      <input type="text" name="user_email" id="user_email" value="${sessionScope.loginUser.userEmail}" readonly>
     </div>
     
     <div>
@@ -41,26 +41,29 @@
   
   <script>
   
-    const formWrite = document.getElementById('form-write');
-    const userEmail = document.getElementById('user_email');
-    const title = document.getElementById('title');
-    
-    formWrite.addEventListener('submit', (event) => {
-      if(userEmail.value === '') {
-        alert('작성자 이메일은 필수입니다.');
-        userEmail.focus();
-        event.preventDefault();  // submit 을 취소합니다.
-        return;                  // 바로 아래 if 문을 수행하지 않고 바로 이벤트 핸들러를 종료합니다.
-      }
-      if(title.value === '') {
-        alert('제목은 필수입니다.');
-        title.focus();
-        event.preventDefault();  // submit 을 취소합니다.
-        return;
-      }
-    })
-    
+    function submitForm() {    
+      const formWrite = document.getElementById('form-write');
+      const userEmail = document.getElementById('user_email');
+      const title = document.getElementById('title');
+      formWrite.addEventListener('submit', (event) => {
+        if(userEmail.value === '') {
+          alert('작성자 이메일은 필수입니다.');
+          userEmail.focus();
+          event.preventDefault();  // submit 을 취소합니다.
+          return;                  // 바로 아래 if 문을 수행하지 않고 바로 이벤트 핸들러를 종료합니다.
+        }
+        if(title.value === '') {
+          alert('제목은 필수입니다.');
+          title.focus();
+          event.preventDefault();  // submit 을 취소합니다.
+          return;
+        }
+      })
+    }
+    submitForm();
   </script>
+
+</div>
 
 </body>
 </html>

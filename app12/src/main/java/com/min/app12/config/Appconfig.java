@@ -5,6 +5,6 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @EnableAspectJAutoProxy
 @Configuration
-public class Appconfig {
+public class AppConfig {
 
 }

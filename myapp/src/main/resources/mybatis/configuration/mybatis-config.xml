@@ -11,6 +11,7 @@
   <typeAliases>
     <typeAlias type="com.min.myapp.dto.AttachDto" alias="AttachDto"/>
     <typeAlias type="com.min.myapp.dto.NoticeDto" alias="NoticeDto"/>
+    <typeAlias type="com.min.myapp.dto.UserDto" alias="UserDto"/>
   </typeAliases>
 
 </configuration>

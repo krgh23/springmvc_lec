@@ -2,6 +2,8 @@ package com.min.myapp.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -26,8 +28,12 @@ public class NoticeController {
   private final INoticeService noticeService;
   
   @RequestMapping(value="/list.do")
-  public String list(Model model) {
-    model.addAttribute("noticeList", noticeService.getNoticeList());
+  public String list(HttpServletRequest request, Model model) {
+    Map<String, Object> map = noticeService.getNoticeList(request);
+    model.addAttribute("noticeList", map.get("noticeList"));
+    model.addAttribute("total", map.get("total"));
+    model.addAttribute("paging", map.get("paging"));
+    model.addAttribute("offset", map.get("offset"));
     return "notice/list";
   }
   
@@ -62,6 +68,21 @@ public class NoticeController {
                                          , @RequestHeader(name="User-Agent") String userAgent  // 요청 헤더(User-Agent : 어떤 브라우저로 접속하였는지 확인할 수 있는 헤더 값)
       ) {
     return noticeService.download(attachId, userAgent);    
+  }
+  
+  @RequestMapping(value="/search.form")
+  public void searchForm() {
+    
+  }
+  
+  @RequestMapping(value="/search.do")
+  public String search(HttpServletRequest request, Model model) {
+    Map<String, Object> map = noticeService.getSearchList(request);
+    model.addAttribute("searchList", map.get("searchList"));
+    model.addAttribute("searchCount", map.get("searchCount"));
+    model.addAttribute("paging", map.get("paging"));
+    model.addAttribute("offset", map.get("offset"));
+    return "notice/search";
   }
   
 }

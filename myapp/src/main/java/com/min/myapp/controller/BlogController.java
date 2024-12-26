@@ -2,6 +2,8 @@ package com.min.myapp.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,11 +27,13 @@ public class BlogController {
   }
   
   @RequestMapping(value="/list.do")
-  public String list(Model model) {
-    // 블로그 목록(blogList)과 전체 블로그 개수(count)를 list.jsp로 전달합니다.
-    Map<String, Object> map = blogService.getBlogList();
+  public String list(HttpServletRequest request, Model model) {
+    // 블로그 목록(blogList)과 페이지 링크(paging)와 전체 블로그 개수(total)와 목록 시작 번호(offset)를 list.jsp로 전달합니다.
+    Map<String, Object> map = blogService.getBlogList(request);
     model.addAttribute("blogList", map.get("blogList"));
-    model.addAttribute("count", map.get("count"));
+    model.addAttribute("paging", map.get("paging"));
+    model.addAttribute("total", map.get("total"));
+    model.addAttribute("offset", map.get("offset"));
     return "blog/list";
   }
   

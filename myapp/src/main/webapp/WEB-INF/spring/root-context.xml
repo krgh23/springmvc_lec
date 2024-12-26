@@ -7,7 +7,9 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-  <!-- HikariCP : HikariConfig + HikariDataSource -->
+
+
+  <!-- HikariConfig -->
   <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
     <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
     <property name="jdbcUrl"  value="jdbc:mysql://127.0.0.1:3306/db_myapp?serverTimezone=Asia/Seoul"/>
@@ -15,6 +17,7 @@
     <property name="password" value="greenit"/>
   </bean>
   
+  <!-- HikariDataSource -->
   <bean id="hikariDataSource" class="com.zaxxer.hikari.HikariDataSource">
     <constructor-arg ref="hikariConfig" />
   </bean>
@@ -31,12 +34,17 @@
     <constructor-arg ref="sqlSessionFactoryBean"/>
   </bean>
 
+
+
   <!-- CommonsMultipartResolver : 파일 업로드를 위해서 스프링이 호출해서 사용하는 bean. multipartResolver 이름으로 생성해야 합니다. -->
+  
   <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
     <property name="defaultEncoding" value="UTF-8"/>
     <property name="maxUploadSizePerFile" value="10485760" />
     <property name="maxUploadSize" value="104857600"/>
   </bean>
+
+
 
   <!-- AOP를 이용한 트랜잭션 처리하기 (DataSource가 필요하기 때문에 root-context.xml에서 진행합니다. -->
   

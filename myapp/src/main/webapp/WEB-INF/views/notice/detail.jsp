@@ -7,6 +7,14 @@
   <jsp:param name="title" value="${n.noticeTitle}"/>
 </jsp:include>
 
+  <h1>Notice Detail</h1>
+
+  <c:if test="${empty n.userDto.userEmail}">
+    <div>작성자 정보 없음</div>
+  </c:if>
+  <c:if test="${not empty n.userDto.userEmail}">
+    <div>작성자 ${n.userDto.userName}(${n.userDto.userEmail})</div>
+  </c:if>
   <div>작성일시 <fmt:formatDate value="${n.createdAt}" pattern="yyyy-MM-dd a hh:mm:ss"/></div>
 
   <div style="background-color: beige;">
@@ -41,6 +49,8 @@
     confirmDownload();
   
   </script>
+
+</div>
 
 </body>
 </html>
