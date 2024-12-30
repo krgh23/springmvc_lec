@@ -75,7 +75,6 @@
     toBlogDetail();
   </script>
 
-</div>
 
 </body>
 </html>
