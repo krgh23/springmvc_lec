@@ -8,6 +8,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>계층형게시판</title>
+<style>
+  .hidden {
+    display: none;
+  }
+</style>
 </head>
 <body>
 
@@ -41,11 +46,11 @@
           </c:if>
           <pre style="display: inline-block; width: 500px;">${b.contents}</pre>
           <span style="display: inline-block;">${b.createdAt}</span>
-          <button type="button" class="btn-form-reply" data-index="${k.index}">댓글달기</button>
+          <button type="button" class="btn-form-reply">댓글달기</button>
           <button type="button" class="btn-delete" data-bbs-id="${b.bbsId}">삭제</button>
         </c:if>
       </div>
-      <div class="form-reply hidden show${k.index}">
+      <div class="form-reply hidden">
         <form action="${contextPath}/bbs/registBbsReply.do" method="post">
           <!-- 원글의 depth, group_id, group_order를 포함해야 합니다. -->
           <input type="hidden" name="depth" value="${b.depth}">
@@ -64,15 +69,21 @@
       if(msg !== '')
         alert(msg);
     }
+    function hiddenAllFormReply() {
+      const formReply = document.getElementsByClassName('form-reply');
+      for(const form of formReply) {
+        form.classList.add('hidden');  // 모든 댓글 입력 폼에 class="hidden"을 추가합니다. 그러면 CSS에 의해서 화면에서 사라집니다.
+      }
+    }
     function displayFormReply() {
       const btnFormReply = document.getElementsByClassName('btn-form-reply');
       for(const btn of btnFormReply) {
         btn.addEventListener('click', (event) => {
-          
+          hiddenAllFormReply();  // 모든 댓글 입력 폼을 숨깁니다. 
+          const target = event.currentTarget.parentElement.nextElementSibling;  // 화면에 표시할 댓글 입력 폼입니다.
+          target.classList.remove('hidden');  // 화면에 표시할 댓글 입력 폼의 class="hidden" 속성을 없앱니다.
         })
       }
-      const formReply = document.getElementsByClassName('form-reply');
-      
     }
     function deleteBbs() {
       const btnDelete = document.getElementsByClassName('btn-delete');
