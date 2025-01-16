@@ -95,14 +95,15 @@ public class MvcController3 {
   // Query String : sort=ASC
   @RequestMapping(value="/webdir3/req5")
   public String req5(                           // public String req5(String sort, int page) {  // 선언된 변수로 추론하여 값을 받습니다.
-      @RequestParam(value="sort") String sort  // Parameter sort 가 전달되지 않으면 "잘못된 요청(400)" 예외가 발생합니다.
-    , @RequestParam(value="page", required=false, defaultValue="1") int page // Parameter page 가 전달되지 않으면 기본 값으로 "1"을 사용합니다.
+      @RequestParam(value="sort") String sort   // Parameter sort 가 전달되지 않으면 "잘못된 요청(400)" 에외가 발생합니다.
+    , @RequestParam(value="page", required=false, defaultValue="1") int page // Parameter page 가 전달되지 않으면 기본값으로 "1"을 사용합니다.
+/*
     , @RequestParam(value="page", required=false) int page // required=false -> page가 전달되지 않아도 된다
                                                            // int / double / char... 은 null을 받을 수없어서 required=false있어도 오류(500)발생
                                                            // Stirng / Integer / Optional ... 은 null을 받을수 있어서 정상처리 된다.
 */
   ) {
-    System.out.println(sort + ", " + page);
+    System.out.println(sort + "," + page);
     return "webdir3/req5";
   }
   
